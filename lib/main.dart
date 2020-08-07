@@ -1,66 +1,60 @@
+import 'package:bloc/bloc.dart';
+import 'package:cryptofolio/blocs/home/home_bloc.dart';
+import 'package:cryptofolio/data_provider/coin_gecko_api_client.dart';
+import 'package:cryptofolio/repositories/coin_repository.dart';
+import 'package:cryptofolio/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import './blocs/simple_bloc_observer.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
-  runApp(MyApp());
+  Bloc.observer = SimpleBlocObserver();
+  final CoinRepository coinRepository =
+      CoinRepository(CoinGeckoApiClient(http.Client()));
+
+  runApp(
+    BlocProvider<HomeBloc>(
+      create: (context) {
+        return HomeBloc(
+          coinRepository,
+        )..add(FetchTop20Coins());
+      },
+      child: CryotofolioApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class CryotofolioApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        primaryColor: Color(0xFF101518),
+        accentColor: Colors.cyan[300],
+        buttonColor: Color(0xFFC7CDD2),
+        textSelectionColor: Colors.cyan[100],
+        backgroundColor: Color(0xFF101518),
+        scaffoldBackgroundColor: Color(0xFF101518),
+        cardTheme: CardTheme().copyWith(
+          color: Color(0xFF1D2228),
         ),
+        toggleableActiveColor: Colors.cyan[300],
+        textTheme: ThemeData.dark().textTheme.copyWith(
+            bodyText2: ThemeData.dark().textTheme.bodyText2.copyWith(
+                  decorationColor: Colors.transparent,
+                )),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      home: Scaffold(
+        body: HomeScreen(),
       ),
+      // routes: {
+      //   '/': (context){
+      //     return BlocProvider(create: (context) => ,)
+      //   }
+      // },
     );
   }
 }
