@@ -20,10 +20,19 @@ class PortfolioIsUnhidden extends PortfolioState {
   final double portfolioTotalGain;
   final double portfolioTotalGainPercentage;
 
-  PortfolioIsUnhidden(this.portfolioValue, this.portfolioTotalSpent,
-      this.portfolioTotalGain, this.portfolioTotalGainPercentage);
+  PortfolioIsUnhidden(
+    this.portfolioValue,
+    this.portfolioTotalSpent,
+    this.portfolioTotalGain,
+    this.portfolioTotalGainPercentage,
+  );
   @override
-  List<Object> get props => [portfolioValue, portfolioTotalSpent];
+  List<Object> get props => [
+        portfolioValue,
+        portfolioTotalSpent,
+        portfolioTotalGain,
+        portfolioTotalGainPercentage,
+      ];
 
   @override
   String toString() =>
