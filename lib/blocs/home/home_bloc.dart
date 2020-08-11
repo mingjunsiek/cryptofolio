@@ -18,14 +18,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Stream<HomeState> mapEventToState(
     HomeEvent event,
   ) async* {
-    if (event is FetchTop20Coins) {
+    if (event is FetchTop100Coins) {
       yield HomeIsLoading();
       try {
-        coinList = await coinRepository.fetchTop20Coins();
+        coinList = await coinRepository.fetchTop100Coins();
         print("Finish loading coinlist");
         yield HomeLoadSuccess(coinList: coinList);
-      } catch (error) {
-        yield HomeLoadError(error);
+      } catch (_) {
+        yield HomeLoadError("Error");
       }
     }
   }

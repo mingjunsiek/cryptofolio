@@ -1,8 +1,7 @@
 import 'package:cryptofolio/blocs/top20coins/top20coins_bloc.dart';
 import 'package:cryptofolio/widgets/default_text_card.dart';
-import 'package:cryptofolio/widgets/coin_lists.dart';
+import 'package:cryptofolio/widgets/home/coin_card/coin_lists.dart';
 import 'package:cryptofolio/widgets/is_loading_card.dart';
-import 'package:cryptofolio/widgets/title_with_button_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

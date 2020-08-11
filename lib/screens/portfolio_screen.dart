@@ -1,4 +1,3 @@
-import 'package:cryptofolio/models/routes.dart';
 import 'package:flutter/material.dart';
 
 class PortfolioScreen extends StatelessWidget {

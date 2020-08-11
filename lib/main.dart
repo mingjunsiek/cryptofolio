@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cryptofolio/blocs/home/home_bloc.dart';
+import 'package:cryptofolio/blocs/search/search_bloc.dart';
 import 'package:cryptofolio/data_provider/coin_gecko_api_client.dart';
 import 'package:cryptofolio/models/routes.dart';
 import 'package:cryptofolio/repositories/coin_repository.dart';
@@ -16,7 +17,11 @@ import 'screens/screens.dart';
 void main() {
   Bloc.observer = SimpleBlocObserver();
 
-  runApp(CryotofolioApp());
+  runApp(RepositoryProvider(
+      create: (context) => CoinRepository(
+            CoinGeckoApiClient(http.Client()),
+          ),
+      child: CryotofolioApp()));
 }
 
 class CryotofolioApp extends StatelessWidget {
@@ -48,18 +53,17 @@ class CryotofolioApp extends StatelessWidget {
       routes: {
         CryptofolioRoutes.home: (context) {
           final CoinRepository coinRepository =
-              CoinRepository(CoinGeckoApiClient(http.Client()));
+              context.repository<CoinRepository>();
 
           return MultiBlocProvider(providers: [
             BlocProvider<TabsBloc>(
               create: (context) => TabsBloc(),
             ),
             BlocProvider<HomeBloc>(
-              create: (context) {
-                return HomeBloc(
-                  coinRepository,
-                )..add(FetchTop20Coins());
-              },
+              create: (context) => HomeBloc(coinRepository),
+            ),
+            BlocProvider<SearchBloc>(
+              create: (context) => SearchBloc(),
             ),
           ], child: NavigationScreen());
         },

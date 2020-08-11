@@ -1,6 +1,6 @@
 import 'package:cryptofolio/blocs/portfolio/portfolio_bloc.dart';
 import 'package:cryptofolio/widgets/default_text_card.dart';
-import 'package:cryptofolio/widgets/home/home_portfolio_card.dart';
+import 'package:cryptofolio/widgets/home_portfolio_card.dart';
 import 'package:cryptofolio/widgets/is_loading_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

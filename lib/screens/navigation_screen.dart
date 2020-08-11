@@ -1,6 +1,9 @@
+import 'package:cryptofolio/blocs/blocs.dart';
+import 'package:cryptofolio/blocs/search/search_bloc.dart';
 import 'package:cryptofolio/blocs/tabs/tabs_bloc.dart';
 import 'package:cryptofolio/models/app_tab.dart';
-import 'package:cryptofolio/widgets/tab_selector.dart';
+import 'package:cryptofolio/repositories/repositories.dart';
+import 'package:cryptofolio/widgets/navigation/tab_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,10 +18,10 @@ class NavigationScreen extends StatelessWidget {
       builder: (context, activeTab) {
         return Scaffold(
           body: ((activeTab) {
-            if (activeTab == AppTab.search) return SearchScreen();
+            if (activeTab == AppTab.search) return loadSearchScreen(context);
             if (activeTab == AppTab.portfolio) return PortfolioScreen();
             if (activeTab == AppTab.settings) return SettingsScreen();
-            return HomeScreen();
+            return loadHomeScreen(context);
           }(activeTab)),
           bottomNavigationBar: TabSelector(
             activeTab: activeTab,
@@ -28,5 +31,20 @@ class NavigationScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  HomeScreen loadHomeScreen(BuildContext context) {
+    print("Loading Home Screen");
+    final homeBloc = context.bloc<HomeBloc>();
+    homeBloc.add(FetchTop100Coins());
+    return HomeScreen();
+  }
+
+  SearchScreen loadSearchScreen(BuildContext context) {
+    print("Loading Search Screen");
+    final searchBloc = context.bloc<SearchBloc>();
+    final coinRepo = context.repository<CoinRepository>();
+    searchBloc.add(SearchFetchTop100Coins(coinRepo));
+    return SearchScreen();
   }
 }

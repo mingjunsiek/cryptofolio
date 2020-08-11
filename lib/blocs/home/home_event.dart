@@ -5,8 +5,8 @@ abstract class HomeEvent extends Equatable {
   const HomeEvent();
 }
 
-class FetchTop20Coins extends HomeEvent {
-  const FetchTop20Coins();
+class FetchTop100Coins extends HomeEvent {
+  const FetchTop100Coins();
 
   @override
   List<Object> get props => [];

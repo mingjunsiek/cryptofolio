@@ -1,7 +1,7 @@
 import 'package:cryptofolio/helpers/size_helpers.dart';
 import 'package:cryptofolio/models/freezed_classes.dart';
-import 'package:cryptofolio/widgets/title_with_button_bar.dart';
-import 'package:cryptofolio/widgets/twenty_four_percentage.dart';
+import 'package:cryptofolio/widgets/home/coin_card/title_with_button_bar.dart';
+import 'package:cryptofolio/widgets/home/coin_card/twenty_four_percentage.dart';
 import 'package:flutter/material.dart';
 
 import 'current_price.dart';
@@ -58,8 +58,7 @@ class CoinLists extends StatelessWidget {
               context: context,
               removeTop: true,
               child: ListView.builder(
-                itemCount:
-                    favourites == null ? coinList.length : favouriteList.length,
+                itemCount: favourites == null ? 20 : favouriteList.length,
                 itemBuilder: (context, index) {
                   final currentCoin = favourites == null
                       ? coinList[index]

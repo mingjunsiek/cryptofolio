@@ -75,7 +75,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
           portfolioTotalGainPercentage,
         );
       } catch (e) {
-        yield PortfolioLoadFailure(e);
+        yield PortfolioLoadFailure("Error");
       }
     }
 

@@ -1,8 +1,8 @@
 import 'package:cryptofolio/blocs/favourites/favourites_bloc.dart';
 import 'package:cryptofolio/blocs/top20coins/top20coins_bloc.dart';
 import 'package:cryptofolio/models/freezed_classes.dart';
-import 'package:cryptofolio/widgets/coin_lists.dart';
-import 'package:cryptofolio/widgets/title_with_button_bar.dart';
+import 'package:cryptofolio/repositories/coin_repository.dart';
+import 'package:cryptofolio/widgets/home/coin_card/coin_lists.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,7 +27,7 @@ class HomeFavourites extends StatelessWidget {
           return IsLoadingCard();
         }
         if (state is FavouritesLoadSuccess) {
-          final top20Bloc = context.bloc<Top20coinsBloc>();
+          final top20Bloc = context.repository<CoinRepository>();
           return CoinLists(
             coinList: top20Bloc.coinList,
             favourites: state.favourites,

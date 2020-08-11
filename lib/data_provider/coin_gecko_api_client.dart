@@ -9,9 +9,10 @@ class CoinGeckoApiClient {
 
   CoinGeckoApiClient(this.httpClient);
 
-  Future<List<Coin>> fetchTop20Coins() async {
+  Future<List<Coin>> fetchTop100Coins() async {
     final url =
-        '$_baseUrl/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false';
+        '$_baseUrl/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+
     final response = await this.httpClient.get(url);
     print(response.statusCode);
     if (response.statusCode != 200) {
@@ -20,7 +21,7 @@ class CoinGeckoApiClient {
     final List<dynamic> responseJson = jsonDecode(response.body);
     final list =
         responseJson.map((coinData) => Coin.fromJson(coinData)).toList();
-    //print(list);
+    print(list);
     return list;
   }
 }
