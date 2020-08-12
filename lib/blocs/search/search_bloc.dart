@@ -12,7 +12,6 @@ part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  List<Coin> coinList;
   SearchBloc() : super(SearchIsLoading());
 
   @override
@@ -21,13 +20,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   ) async* {
     if (event is SearchFetchTop100Coins) {
       yield SearchIsLoading();
-      try {
-        coinList = event.coinRepository.coinList;
-        print("Finish loading coinlist");
-        yield SearchLoadSuccess(coinList: coinList);
-      } catch (_) {
-        yield SearchLoadError("Error");
-      }
+      print("Finish loading coinlist");
+      yield SearchLoadSuccess();
     }
   }
 }

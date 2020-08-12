@@ -1,3 +1,4 @@
+import 'package:cryptofolio/models/routes.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -5,8 +6,16 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Settings Screen,"),
+    return Scaffold(
+      body: Center(
+        child: FlatButton(
+          child: Text("PORTFOLIO"),
+          onPressed: () {
+            // print(Navigator.of(context).canPop());
+            Navigator.pushNamed(context, CryptofolioRoutes.portfolio);
+          },
+        ),
+      ),
     );
   }
 }

@@ -10,6 +10,7 @@ part 'favourites_event.dart';
 part 'favourites_state.dart';
 
 class FavouritesBloc extends Bloc<FavouritesEvent, FavouritesState> {
+  Favourites favourites;
   FavouritesBloc() : super(FavouritesInProgess());
 
   @override
@@ -22,13 +23,10 @@ class FavouritesBloc extends Bloc<FavouritesEvent, FavouritesState> {
 
         SharedPreferences prefs = await SharedPreferences.getInstance();
 
-        prefs.setStringList(
-            "favourites", ["bitcoin", "ethereum", "ripple", "tether"]);
-
         if (!prefs.containsKey("favourites"))
           yield FavouriteIsEmpty();
         else {
-          Favourites favourites = Favourites(prefs.getStringList("favourites"));
+          favourites = Favourites(prefs.getStringList("favourites"));
           print('favourite_bloc: ${favourites.favouriteList}');
           yield FavouritesLoadSuccess(favourites);
         }

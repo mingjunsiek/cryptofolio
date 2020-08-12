@@ -10,14 +10,7 @@ abstract class SearchState extends Equatable {
 
 class SearchIsLoading extends SearchState {}
 
-class SearchLoadSuccess extends SearchState {
-  final List<Coin> coinList;
-
-  SearchLoadSuccess({this.coinList = const []});
-
-  @override
-  String toString() => 'HomeLoadSuccess { todos: $coinList }';
-}
+class SearchLoadSuccess extends SearchState {}
 
 class SearchLoadError extends SearchState {
   final String errorMessage;

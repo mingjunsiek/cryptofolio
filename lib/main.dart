@@ -55,17 +55,20 @@ class CryotofolioApp extends StatelessWidget {
           final CoinRepository coinRepository =
               context.repository<CoinRepository>();
 
-          return MultiBlocProvider(providers: [
-            BlocProvider<TabsBloc>(
-              create: (context) => TabsBloc(),
-            ),
-            BlocProvider<HomeBloc>(
-              create: (context) => HomeBloc(coinRepository),
-            ),
-            BlocProvider<SearchBloc>(
-              create: (context) => SearchBloc(),
-            ),
-          ], child: NavigationScreen());
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider<TabsBloc>(
+                create: (context) => TabsBloc(),
+              ),
+              BlocProvider<HomeBloc>(
+                create: (context) => HomeBloc(coinRepository),
+              ),
+              BlocProvider<SearchBloc>(
+                create: (context) => SearchBloc(),
+              ),
+            ],
+            child: NavigationScreen(),
+          );
         },
         CryptofolioRoutes.search: (context) {
           return SearchScreen();

@@ -25,20 +25,20 @@ class _$CoinTearOff {
       int market_cap,
       int market_cap_rank,
       int total_volume,
-      double high_24h,
-      double low_24h,
-      double price_change_24h,
-      double price_change_percentage_24h,
-      double market_cap_change_24h,
-      double market_cap_change_percentage_24h,
-      double circulating_supply,
+      @nullable double high_24h,
+      @nullable double low_24h,
+      @nullable double price_change_24h,
+      @nullable double price_change_percentage_24h,
+      @nullable double market_cap_change_24h,
+      @nullable double market_cap_change_percentage_24h,
+      @nullable double circulating_supply,
       @nullable double total_supply,
-      double ath,
-      double ath_change_percentage,
-      String ath_date,
-      double atl,
-      double atl_change_percentage,
-      String atl_date,
+      @nullable double ath,
+      @nullable double ath_change_percentage,
+      @nullable String ath_date,
+      @nullable double atl,
+      @nullable double atl_change_percentage,
+      @nullable String atl_date,
       @nullable Map<String, dynamic> roi,
       String last_updated) {
     return _Coin(
@@ -82,20 +82,33 @@ mixin _$Coin {
   int get market_cap;
   int get market_cap_rank;
   int get total_volume;
+  @nullable
   double get high_24h;
+  @nullable
   double get low_24h;
+  @nullable
   double get price_change_24h;
+  @nullable
   double get price_change_percentage_24h;
+  @nullable
   double get market_cap_change_24h;
+  @nullable
   double get market_cap_change_percentage_24h;
+  @nullable
   double get circulating_supply;
   @nullable
   double get total_supply;
+  @nullable
   double get ath;
+  @nullable
   double get ath_change_percentage;
+  @nullable
   String get ath_date;
+  @nullable
   double get atl;
+  @nullable
   double get atl_change_percentage;
+  @nullable
   String get atl_date;
   @nullable
   Map<String, dynamic> get roi;
@@ -117,20 +130,20 @@ abstract class $CoinCopyWith<$Res> {
       int market_cap,
       int market_cap_rank,
       int total_volume,
-      double high_24h,
-      double low_24h,
-      double price_change_24h,
-      double price_change_percentage_24h,
-      double market_cap_change_24h,
-      double market_cap_change_percentage_24h,
-      double circulating_supply,
+      @nullable double high_24h,
+      @nullable double low_24h,
+      @nullable double price_change_24h,
+      @nullable double price_change_percentage_24h,
+      @nullable double market_cap_change_24h,
+      @nullable double market_cap_change_percentage_24h,
+      @nullable double circulating_supply,
       @nullable double total_supply,
-      double ath,
-      double ath_change_percentage,
-      String ath_date,
-      double atl,
-      double atl_change_percentage,
-      String atl_date,
+      @nullable double ath,
+      @nullable double ath_change_percentage,
+      @nullable String ath_date,
+      @nullable double atl,
+      @nullable double atl_change_percentage,
+      @nullable String atl_date,
       @nullable Map<String, dynamic> roi,
       String last_updated});
 }
@@ -235,20 +248,20 @@ abstract class _$CoinCopyWith<$Res> implements $CoinCopyWith<$Res> {
       int market_cap,
       int market_cap_rank,
       int total_volume,
-      double high_24h,
-      double low_24h,
-      double price_change_24h,
-      double price_change_percentage_24h,
-      double market_cap_change_24h,
-      double market_cap_change_percentage_24h,
-      double circulating_supply,
+      @nullable double high_24h,
+      @nullable double low_24h,
+      @nullable double price_change_24h,
+      @nullable double price_change_percentage_24h,
+      @nullable double market_cap_change_24h,
+      @nullable double market_cap_change_percentage_24h,
+      @nullable double circulating_supply,
       @nullable double total_supply,
-      double ath,
-      double ath_change_percentage,
-      String ath_date,
-      double atl,
-      double atl_change_percentage,
-      String atl_date,
+      @nullable double ath,
+      @nullable double ath_change_percentage,
+      @nullable String ath_date,
+      @nullable double atl,
+      @nullable double atl_change_percentage,
+      @nullable String atl_date,
       @nullable Map<String, dynamic> roi,
       String last_updated});
 }
@@ -344,20 +357,20 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
       this.market_cap,
       this.market_cap_rank,
       this.total_volume,
-      this.high_24h,
-      this.low_24h,
-      this.price_change_24h,
-      this.price_change_percentage_24h,
-      this.market_cap_change_24h,
-      this.market_cap_change_percentage_24h,
-      this.circulating_supply,
+      @nullable this.high_24h,
+      @nullable this.low_24h,
+      @nullable this.price_change_24h,
+      @nullable this.price_change_percentage_24h,
+      @nullable this.market_cap_change_24h,
+      @nullable this.market_cap_change_percentage_24h,
+      @nullable this.circulating_supply,
       @nullable this.total_supply,
-      this.ath,
-      this.ath_change_percentage,
-      this.ath_date,
-      this.atl,
-      this.atl_change_percentage,
-      this.atl_date,
+      @nullable this.ath,
+      @nullable this.ath_change_percentage,
+      @nullable this.ath_date,
+      @nullable this.atl,
+      @nullable this.atl_change_percentage,
+      @nullable this.atl_date,
       @nullable this.roi,
       this.last_updated)
       : assert(id != null),
@@ -368,19 +381,6 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
         assert(market_cap != null),
         assert(market_cap_rank != null),
         assert(total_volume != null),
-        assert(high_24h != null),
-        assert(low_24h != null),
-        assert(price_change_24h != null),
-        assert(price_change_percentage_24h != null),
-        assert(market_cap_change_24h != null),
-        assert(market_cap_change_percentage_24h != null),
-        assert(circulating_supply != null),
-        assert(ath != null),
-        assert(ath_change_percentage != null),
-        assert(ath_date != null),
-        assert(atl != null),
-        assert(atl_change_percentage != null),
-        assert(atl_date != null),
         assert(last_updated != null);
 
   factory _$_Coin.fromJson(Map<String, dynamic> json) =>
@@ -403,33 +403,46 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
   @override
   final int total_volume;
   @override
+  @nullable
   final double high_24h;
   @override
+  @nullable
   final double low_24h;
   @override
+  @nullable
   final double price_change_24h;
   @override
+  @nullable
   final double price_change_percentage_24h;
   @override
+  @nullable
   final double market_cap_change_24h;
   @override
+  @nullable
   final double market_cap_change_percentage_24h;
   @override
+  @nullable
   final double circulating_supply;
   @override
   @nullable
   final double total_supply;
   @override
+  @nullable
   final double ath;
   @override
+  @nullable
   final double ath_change_percentage;
   @override
+  @nullable
   final String ath_date;
   @override
+  @nullable
   final double atl;
   @override
+  @nullable
   final double atl_change_percentage;
   @override
+  @nullable
   final String atl_date;
   @override
   @nullable
@@ -589,20 +602,20 @@ abstract class _Coin implements Coin {
       int market_cap,
       int market_cap_rank,
       int total_volume,
-      double high_24h,
-      double low_24h,
-      double price_change_24h,
-      double price_change_percentage_24h,
-      double market_cap_change_24h,
-      double market_cap_change_percentage_24h,
-      double circulating_supply,
+      @nullable double high_24h,
+      @nullable double low_24h,
+      @nullable double price_change_24h,
+      @nullable double price_change_percentage_24h,
+      @nullable double market_cap_change_24h,
+      @nullable double market_cap_change_percentage_24h,
+      @nullable double circulating_supply,
       @nullable double total_supply,
-      double ath,
-      double ath_change_percentage,
-      String ath_date,
-      double atl,
-      double atl_change_percentage,
-      String atl_date,
+      @nullable double ath,
+      @nullable double ath_change_percentage,
+      @nullable String ath_date,
+      @nullable double atl,
+      @nullable double atl_change_percentage,
+      @nullable String atl_date,
       @nullable Map<String, dynamic> roi,
       String last_updated) = _$_Coin;
 
@@ -625,33 +638,46 @@ abstract class _Coin implements Coin {
   @override
   int get total_volume;
   @override
+  @nullable
   double get high_24h;
   @override
+  @nullable
   double get low_24h;
   @override
+  @nullable
   double get price_change_24h;
   @override
+  @nullable
   double get price_change_percentage_24h;
   @override
+  @nullable
   double get market_cap_change_24h;
   @override
+  @nullable
   double get market_cap_change_percentage_24h;
   @override
+  @nullable
   double get circulating_supply;
   @override
   @nullable
   double get total_supply;
   @override
+  @nullable
   double get ath;
   @override
+  @nullable
   double get ath_change_percentage;
   @override
+  @nullable
   String get ath_date;
   @override
+  @nullable
   double get atl;
   @override
+  @nullable
   double get atl_change_percentage;
   @override
+  @nullable
   String get atl_date;
   @override
   @nullable

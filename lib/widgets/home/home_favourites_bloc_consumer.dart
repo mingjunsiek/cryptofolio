@@ -1,5 +1,7 @@
 import 'package:cryptofolio/blocs/favourites/favourites_bloc.dart';
+import 'package:cryptofolio/blocs/tabs/tabs_bloc.dart';
 import 'package:cryptofolio/blocs/top20coins/top20coins_bloc.dart';
+import 'package:cryptofolio/models/app_tab.dart';
 import 'package:cryptofolio/models/freezed_classes.dart';
 import 'package:cryptofolio/repositories/coin_repository.dart';
 import 'package:cryptofolio/widgets/home/coin_card/coin_lists.dart';
@@ -34,15 +36,24 @@ class HomeFavourites extends StatelessWidget {
             title: "Favourite List",
             buttonText: "See All",
             buttonFunction: () {
-              print('Favourite Button Click');
+              BlocProvider.of<TabsBloc>(context)
+                  .add(TabsUpdated(AppTab.search));
             },
           );
         }
         if (state is FavouriteIsEmpty) {
-          return DefaultTextCard(text: "Favourite is empty");
+          return Container(
+              margin: EdgeInsets.only(
+                top: 30,
+              ),
+              child: DefaultTextCard(text: "Favourite is empty"));
         }
 
-        return DefaultTextCard(text: "Could not fetch favourites");
+        return Container(
+            margin: EdgeInsets.only(
+              top: 30,
+            ),
+            child: DefaultTextCard(text: "Could not fetch favourites"));
         // return IsLoadingCard();
       },
     );

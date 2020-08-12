@@ -1,3 +1,4 @@
+import 'package:cryptofolio/models/routes.dart';
 import 'package:flutter/material.dart';
 
 class PortfolioScreen extends StatelessWidget {
@@ -8,10 +9,10 @@ class PortfolioScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: FlatButton(
-          child: Text("Back"),
+          child: Text("SETTINGS"),
           onPressed: () {
             // print(Navigator.of(context).canPop());
-            // Navigator.pushNamed(context, CryptofolioRoutes.home);
+            Navigator.pushNamed(context, CryptofolioRoutes.settings);
           },
         ),
       ),

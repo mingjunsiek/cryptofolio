@@ -44,15 +44,11 @@ class CoinLists extends StatelessWidget {
             buttonFunction: this.buttonFunction,
           ),
           Container(
-            height: favourites == null
-                ? (displayHeight(context) -
-                        MediaQuery.of(context).padding.top -
-                        kToolbarHeight) *
-                    0.50
-                : (displayHeight(context) -
-                        MediaQuery.of(context).padding.top -
-                        kToolbarHeight) *
-                    0.40,
+            height: _getFavouriteHeight(
+              favourites,
+              displayHeight(context),
+              MediaQuery.of(context).padding.top,
+            ),
             width: displayWidth(context) * 0.95,
             child: MediaQuery.removePadding(
               context: context,
@@ -122,4 +118,14 @@ class CoinLists extends StatelessWidget {
       ),
     );
   }
+}
+
+double _getFavouriteHeight(
+    Favourites favourites, double displayHeight, double top) {
+  final finalHeight = (displayHeight - top - kToolbarHeight);
+  if (favourites == null) return finalHeight * 0.5;
+  if (favourites.favouriteList.length == 2)
+    return finalHeight * 0.25;
+  else if (favourites.favouriteList.length == 1) return displayHeight * 0.10;
+  return finalHeight * 0.35;
 }

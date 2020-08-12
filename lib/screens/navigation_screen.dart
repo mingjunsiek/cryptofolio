@@ -43,8 +43,7 @@ class NavigationScreen extends StatelessWidget {
   SearchScreen loadSearchScreen(BuildContext context) {
     print("Loading Search Screen");
     final searchBloc = context.bloc<SearchBloc>();
-    final coinRepo = context.repository<CoinRepository>();
-    searchBloc.add(SearchFetchTop100Coins(coinRepo));
+    searchBloc.add(SearchFetchTop100Coins());
     return SearchScreen();
   }
 }

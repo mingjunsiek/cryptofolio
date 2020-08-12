@@ -19,3 +19,13 @@ class TabsUpdated extends TabsEvent {
   @override
   String toString() => 'TabUpdated { tab: $tab }';
 }
+
+class NavigatorActionPop extends TabsEvent {}
+
+class NavigateToHomeEvent extends TabsEvent {}
+
+class NavigateToSearchEvent extends TabsEvent {}
+
+class NavigateToPortfolioEvent extends TabsEvent {}
+
+class NavigateToSettingEvent extends TabsEvent {}

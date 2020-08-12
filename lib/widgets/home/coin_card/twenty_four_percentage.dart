@@ -13,7 +13,15 @@ class TwentyFourPercentage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text("24hr"),
-          if (percentage < 0)
+          if (percentage == null)
+            Text(
+              "-",
+              style: TextStyle(
+                color: Colors.grey[300],
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          if (percentage != null && percentage < 0)
             Text(
               percentage.toStringAsFixed(2),
               style: TextStyle(
@@ -21,7 +29,7 @@ class TwentyFourPercentage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          if (percentage >= 0)
+          if (percentage != null && percentage >= 0)
             Text(
               percentage.toStringAsFixed(2),
               style: TextStyle(

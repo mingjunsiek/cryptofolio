@@ -19,8 +19,12 @@ class CoinGeckoApiClient {
       throw 'Error Code: ${response.statusCode}';
     }
     final List<dynamic> responseJson = jsonDecode(response.body);
-    final list =
-        responseJson.map((coinData) => Coin.fromJson(coinData)).toList();
+    int i = 0;
+    final list = responseJson.map((coinData) {
+      Coin c = Coin.fromJson(coinData);
+      print(i++);
+      return c;
+    }).toList();
     print(list);
     return list;
   }
