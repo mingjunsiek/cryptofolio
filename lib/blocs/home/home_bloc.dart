@@ -24,8 +24,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         coinList = await coinRepository.fetchTop100Coins();
         print("Finish loading coinlist");
         yield HomeLoadSuccess(coinList: coinList);
-      } catch (_) {
-        yield HomeLoadError("Error");
+      } catch (e) {
+        yield HomeLoadError(e);
       }
     }
   }

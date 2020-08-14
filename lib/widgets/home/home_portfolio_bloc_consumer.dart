@@ -27,13 +27,13 @@ class HomePortfolio extends StatelessWidget {
         if (state is PortfolioIsEmpty) {
           return DefaultTextCard(text: "PortfolioIsEmpty");
         }
-        if (state is PortfolioIsUnhidden) {
+        if (state is PortfolioIsInitialized) {
           return HomePortfolioCard(
             portfolioTotalValue: state.portfolioValue,
             portfolioTotalSpent: state.portfolioTotalSpent,
             portfolioTotalGain: state.portfolioTotalGain,
             portfolioTotalGainPercentage: state.portfolioTotalGainPercentage,
-            isHidden: false,
+            isHidden: state.isHidden,
           );
         }
 

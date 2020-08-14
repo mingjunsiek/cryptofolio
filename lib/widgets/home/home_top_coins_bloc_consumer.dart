@@ -1,7 +1,6 @@
 import 'package:cryptofolio/blocs/tabs/tabs_bloc.dart';
 import 'package:cryptofolio/blocs/top20coins/top20coins_bloc.dart';
 import 'package:cryptofolio/models/app_tab.dart';
-import 'package:cryptofolio/models/routes.dart';
 import 'package:cryptofolio/widgets/default_text_card.dart';
 import 'package:cryptofolio/widgets/home/coin_card/coin_lists.dart';
 import 'package:cryptofolio/widgets/is_loading_card.dart';

@@ -14,17 +14,19 @@ class PortfolioIsEmpty extends PortfolioState {}
 
 class PortfolioInProgress extends PortfolioState {}
 
-class PortfolioIsUnhidden extends PortfolioState {
+class PortfolioIsInitialized extends PortfolioState {
   final double portfolioValue;
   final double portfolioTotalSpent;
   final double portfolioTotalGain;
   final double portfolioTotalGainPercentage;
+  final bool isHidden;
 
-  PortfolioIsUnhidden(
+  PortfolioIsInitialized(
     this.portfolioValue,
     this.portfolioTotalSpent,
     this.portfolioTotalGain,
     this.portfolioTotalGainPercentage,
+    this.isHidden,
   );
   @override
   List<Object> get props => [
@@ -49,4 +51,36 @@ class PortfolioLoadFailure extends PortfolioState {
 
   @override
   String toString() => 'PortfolioLoadFailure { todos: $errorMessage }';
+}
+
+class PortfolioPageInProgess extends PortfolioState {}
+
+class PortfolioPageLoadSuccess extends PortfolioState {
+  final List<PortfolioItem> portfolioItemList;
+  final double portfolioTotalSpent;
+  final double portfolioValue;
+  final double portfolioTotalGain;
+  final double portfolioTotalGainPercentage;
+  final bool isHidden;
+  final Map<String, Map<String, dynamic>> pieChartInfo;
+
+  const PortfolioPageLoadSuccess({
+    this.portfolioItemList,
+    this.portfolioTotalSpent,
+    this.portfolioValue,
+    this.portfolioTotalGain,
+    this.portfolioTotalGainPercentage,
+    this.isHidden,
+    this.pieChartInfo,
+  });
+}
+
+class PortfolioPageLoadFailure extends PortfolioState {
+  final String errorMessage;
+  const PortfolioPageLoadFailure(this.errorMessage);
+  @override
+  List<Object> get props => [errorMessage];
+
+  @override
+  String toString() => 'PortfolioPageLoadFailure { todos: $errorMessage }';
 }

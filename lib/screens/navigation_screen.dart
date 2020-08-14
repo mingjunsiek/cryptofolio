@@ -2,7 +2,6 @@ import 'package:cryptofolio/blocs/blocs.dart';
 import 'package:cryptofolio/blocs/search/search_bloc.dart';
 import 'package:cryptofolio/blocs/tabs/tabs_bloc.dart';
 import 'package:cryptofolio/models/app_tab.dart';
-import 'package:cryptofolio/repositories/repositories.dart';
 import 'package:cryptofolio/widgets/navigation/tab_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +18,8 @@ class NavigationScreen extends StatelessWidget {
         return Scaffold(
           body: ((activeTab) {
             if (activeTab == AppTab.search) return loadSearchScreen(context);
-            if (activeTab == AppTab.portfolio) return PortfolioScreen();
+            if (activeTab == AppTab.portfolio)
+              return loadPortfolioScreen(context);
             if (activeTab == AppTab.settings) return SettingsScreen();
             return loadHomeScreen(context);
           }(activeTab)),
@@ -37,6 +37,7 @@ class NavigationScreen extends StatelessWidget {
     print("Loading Home Screen");
     final homeBloc = context.bloc<HomeBloc>();
     homeBloc.add(FetchTop100Coins());
+
     return HomeScreen();
   }
 
@@ -45,5 +46,12 @@ class NavigationScreen extends StatelessWidget {
     final searchBloc = context.bloc<SearchBloc>();
     searchBloc.add(SearchFetchTop100Coins());
     return SearchScreen();
+  }
+
+  PortfolioScreen loadPortfolioScreen(BuildContext context) {
+    print("Loading Portfolio Screen");
+    final portfolioBloc = context.bloc<PortfolioBloc>();
+    portfolioBloc.add(InitializePortfolioPage());
+    return PortfolioScreen();
   }
 }

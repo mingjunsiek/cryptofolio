@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -15,7 +14,8 @@ abstract class Coin with _$Coin {
     double current_price,
     int market_cap,
     int market_cap_rank,
-    int total_volume,
+    @nullable double fully_diluted_valuation,
+    double total_volume,
     @nullable double high_24h,
     @nullable double low_24h,
     @nullable double price_change_24h,
@@ -24,6 +24,7 @@ abstract class Coin with _$Coin {
     @nullable double market_cap_change_percentage_24h,
     @nullable double circulating_supply,
     @nullable double total_supply,
+    @nullable double max_supply,
     @nullable double ath,
     @nullable double ath_change_percentage,
     @nullable String ath_date,
@@ -38,12 +39,13 @@ abstract class Coin with _$Coin {
 
 @freezed
 abstract class PortfolioItem with _$PortfolioItem {
-  const factory PortfolioItem(
+  const factory PortfolioItem({
     String coindId,
+    String portfolioId,
     double coinAmount,
     double price,
     DateTime purchaseDate,
-  ) = _PortfolioItem;
+  }) = _PortfolioItem;
   factory PortfolioItem.fromJson(Map<String, dynamic> json) =>
       _$PortfolioItemFromJson(json);
 }

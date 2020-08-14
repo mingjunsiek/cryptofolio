@@ -87,7 +87,7 @@ class HomePortfolioCard extends StatelessWidget {
                       '+\$${portfolioTotalGain.toStringAsFixed(2)} (+${portfolioTotalGainPercentage.toStringAsFixed(2)})',
                       style: TextStyle(color: Color(0xFF00AB5E)),
                     ),
-                  if (!isHidden && portfolioTotalGain < 0 && !isHidden)
+                  if (!isHidden && portfolioTotalGain < 0)
                     Text(
                       '\$${portfolioTotalGain.toStringAsFixed(2)} (+${portfolioTotalGainPercentage.toStringAsFixed(2)})',
                       style: TextStyle(color: Color(0xFFF80E0E)),

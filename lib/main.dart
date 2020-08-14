@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import './blocs/simple_bloc_observer.dart';
 import 'package:http/http.dart' as http;
 
+import 'blocs/portfolio/portfolio_bloc.dart';
 import 'blocs/tabs/tabs_bloc.dart';
 import 'screens/screens.dart';
 
@@ -30,6 +31,8 @@ class CryotofolioApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cryptofolio',
       theme: ThemeData(
+        timePickerTheme: ThemeData.dark().timePickerTheme,
+        dialogTheme: ThemeData.dark().dialogTheme,
         primaryColor: Color(0xFF101518),
         accentColor: Colors.cyan[300],
         buttonColor: Color(0xFFC7CDD2),
@@ -46,9 +49,10 @@ class CryotofolioApp extends StatelessWidget {
         ),
         toggleableActiveColor: Colors.cyan[300],
         textTheme: ThemeData.dark().textTheme.copyWith(
-            bodyText2: ThemeData.dark().textTheme.bodyText2.copyWith(
-                  decorationColor: Colors.transparent,
-                )),
+              bodyText2: ThemeData.dark().textTheme.bodyText2.copyWith(
+                    decorationColor: Colors.transparent,
+                  ),
+            ),
       ),
       routes: {
         CryptofolioRoutes.home: (context) {
@@ -65,6 +69,10 @@ class CryotofolioApp extends StatelessWidget {
               ),
               BlocProvider<SearchBloc>(
                 create: (context) => SearchBloc(),
+              ),
+              BlocProvider<PortfolioBloc>(
+                create: (context) => PortfolioBloc(coinRepository.coinList)
+                  ..add(PortfolioFetch()),
               ),
             ],
             child: NavigationScreen(),

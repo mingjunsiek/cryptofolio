@@ -1,9 +1,6 @@
 import 'package:cryptofolio/blocs/search/search_bloc.dart';
 import 'package:cryptofolio/blocs/searchcoinlist/searchcoinlist_bloc.dart';
 import 'package:cryptofolio/helpers/size_helpers.dart';
-import 'package:cryptofolio/models/freezed_classes.dart';
-import 'package:cryptofolio/widgets/home/coin_card/current_price.dart';
-import 'package:cryptofolio/widgets/home/coin_card/twenty_four_percentage.dart';
 import 'package:cryptofolio/widgets/search_coin_list_bloc_consumer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

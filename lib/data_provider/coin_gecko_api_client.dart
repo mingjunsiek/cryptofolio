@@ -16,7 +16,7 @@ class CoinGeckoApiClient {
     final response = await this.httpClient.get(url);
     print(response.statusCode);
     if (response.statusCode != 200) {
-      throw 'Error Code: ${response.statusCode}';
+      throw 'Error Code: ${response.statusCode} ${response.body}';
     }
     final List<dynamic> responseJson = jsonDecode(response.body);
     int i = 0;

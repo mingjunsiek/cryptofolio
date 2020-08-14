@@ -1,6 +1,5 @@
 import 'package:cryptofolio/blocs/favourites/favourites_bloc.dart';
 import 'package:cryptofolio/blocs/tabs/tabs_bloc.dart';
-import 'package:cryptofolio/blocs/top20coins/top20coins_bloc.dart';
 import 'package:cryptofolio/models/app_tab.dart';
 import 'package:cryptofolio/models/freezed_classes.dart';
 import 'package:cryptofolio/repositories/coin_repository.dart';

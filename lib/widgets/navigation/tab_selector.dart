@@ -18,6 +18,8 @@ class TabSelector extends StatelessWidget {
       key: AppTabKeys.tabs,
       currentIndex: AppTab.values.indexOf(activeTab),
       onTap: (index) => onTabSelected(AppTab.values[index]),
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
       items: [
         BottomNavigationBarItem(
           icon: Icon(

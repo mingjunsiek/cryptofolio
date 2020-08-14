@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 
-import 'package:cryptofolio/models/freezed_classes.dart';
-import 'package:cryptofolio/repositories/coin_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';

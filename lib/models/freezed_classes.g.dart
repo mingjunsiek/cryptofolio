@@ -15,7 +15,8 @@ _$_Coin _$_$_CoinFromJson(Map<String, dynamic> json) {
     (json['current_price'] as num)?.toDouble(),
     json['market_cap'] as int,
     json['market_cap_rank'] as int,
-    json['total_volume'] as int,
+    (json['fully_diluted_valuation'] as num)?.toDouble(),
+    (json['total_volume'] as num)?.toDouble(),
     (json['high_24h'] as num)?.toDouble(),
     (json['low_24h'] as num)?.toDouble(),
     (json['price_change_24h'] as num)?.toDouble(),
@@ -24,6 +25,7 @@ _$_Coin _$_$_CoinFromJson(Map<String, dynamic> json) {
     (json['market_cap_change_percentage_24h'] as num)?.toDouble(),
     (json['circulating_supply'] as num)?.toDouble(),
     (json['total_supply'] as num)?.toDouble(),
+    (json['max_supply'] as num)?.toDouble(),
     (json['ath'] as num)?.toDouble(),
     (json['ath_change_percentage'] as num)?.toDouble(),
     json['ath_date'] as String,
@@ -43,6 +45,7 @@ Map<String, dynamic> _$_$_CoinToJson(_$_Coin instance) => <String, dynamic>{
       'current_price': instance.current_price,
       'market_cap': instance.market_cap,
       'market_cap_rank': instance.market_cap_rank,
+      'fully_diluted_valuation': instance.fully_diluted_valuation,
       'total_volume': instance.total_volume,
       'high_24h': instance.high_24h,
       'low_24h': instance.low_24h,
@@ -53,6 +56,7 @@ Map<String, dynamic> _$_$_CoinToJson(_$_Coin instance) => <String, dynamic>{
           instance.market_cap_change_percentage_24h,
       'circulating_supply': instance.circulating_supply,
       'total_supply': instance.total_supply,
+      'max_supply': instance.max_supply,
       'ath': instance.ath,
       'ath_change_percentage': instance.ath_change_percentage,
       'ath_date': instance.ath_date,
@@ -65,10 +69,11 @@ Map<String, dynamic> _$_$_CoinToJson(_$_Coin instance) => <String, dynamic>{
 
 _$_PortfolioItem _$_$_PortfolioItemFromJson(Map<String, dynamic> json) {
   return _$_PortfolioItem(
-    json['coindId'] as String,
-    (json['coinAmount'] as num)?.toDouble(),
-    (json['price'] as num)?.toDouble(),
-    json['purchaseDate'] == null
+    coindId: json['coindId'] as String,
+    portfolioId: json['portfolioId'] as String,
+    coinAmount: (json['coinAmount'] as num)?.toDouble(),
+    price: (json['price'] as num)?.toDouble(),
+    purchaseDate: json['purchaseDate'] == null
         ? null
         : DateTime.parse(json['purchaseDate'] as String),
   );
@@ -77,6 +82,7 @@ _$_PortfolioItem _$_$_PortfolioItemFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_PortfolioItemToJson(_$_PortfolioItem instance) =>
     <String, dynamic>{
       'coindId': instance.coindId,
+      'portfolioId': instance.portfolioId,
       'coinAmount': instance.coinAmount,
       'price': instance.price,
       'purchaseDate': instance.purchaseDate?.toIso8601String(),

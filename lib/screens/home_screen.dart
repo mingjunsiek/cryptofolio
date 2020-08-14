@@ -25,6 +25,8 @@ class HomeScreen extends StatelessWidget {
           );
         }
         if (state is HomeLoadSuccess) {
+          final portfolioBloc = context.bloc<PortfolioBloc>();
+          portfolioBloc.add(PortfolioFetch());
           return MultiBlocProvider(
             providers: [
               BlocProvider<Top20coinsBloc>(
@@ -46,7 +48,10 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      HomePortfolio(),
+                      BlocProvider.value(
+                        value: portfolioBloc,
+                        child: HomePortfolio(),
+                      ),
                       HomeFavourites(),
                       HomeTopCoins(),
                     ],

@@ -19,7 +19,7 @@ class Top20coinsLoadSuccess extends Top20coinsState {
   List<Object> get props => [top20CoinList];
 
   @override
-  String toString() => 'Top20coinsLoaded { todos: $top20CoinList }';
+  String toString() => 'Top20coinsLoaded ';
 }
 
 class Top20coinsLoadError extends Top20coinsState {

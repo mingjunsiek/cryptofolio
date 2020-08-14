@@ -23,7 +23,7 @@ class TwentyFourPercentage extends StatelessWidget {
             ),
           if (percentage != null && percentage < 0)
             Text(
-              percentage.toStringAsFixed(2),
+              '${percentage.toStringAsFixed(2)}%',
               style: TextStyle(
                 color: Colors.red[700],
                 fontWeight: FontWeight.bold,
@@ -31,7 +31,7 @@ class TwentyFourPercentage extends StatelessWidget {
             ),
           if (percentage != null && percentage >= 0)
             Text(
-              percentage.toStringAsFixed(2),
+              '${percentage.toStringAsFixed(2)}%',
               style: TextStyle(
                 color: Colors.green[300],
                 fontWeight: FontWeight.bold,

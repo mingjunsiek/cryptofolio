@@ -24,7 +24,8 @@ class _$CoinTearOff {
       double current_price,
       int market_cap,
       int market_cap_rank,
-      int total_volume,
+      @nullable double fully_diluted_valuation,
+      double total_volume,
       @nullable double high_24h,
       @nullable double low_24h,
       @nullable double price_change_24h,
@@ -33,6 +34,7 @@ class _$CoinTearOff {
       @nullable double market_cap_change_percentage_24h,
       @nullable double circulating_supply,
       @nullable double total_supply,
+      @nullable double max_supply,
       @nullable double ath,
       @nullable double ath_change_percentage,
       @nullable String ath_date,
@@ -49,6 +51,7 @@ class _$CoinTearOff {
       current_price,
       market_cap,
       market_cap_rank,
+      fully_diluted_valuation,
       total_volume,
       high_24h,
       low_24h,
@@ -58,6 +61,7 @@ class _$CoinTearOff {
       market_cap_change_percentage_24h,
       circulating_supply,
       total_supply,
+      max_supply,
       ath,
       ath_change_percentage,
       ath_date,
@@ -81,7 +85,9 @@ mixin _$Coin {
   double get current_price;
   int get market_cap;
   int get market_cap_rank;
-  int get total_volume;
+  @nullable
+  double get fully_diluted_valuation;
+  double get total_volume;
   @nullable
   double get high_24h;
   @nullable
@@ -98,6 +104,8 @@ mixin _$Coin {
   double get circulating_supply;
   @nullable
   double get total_supply;
+  @nullable
+  double get max_supply;
   @nullable
   double get ath;
   @nullable
@@ -129,7 +137,8 @@ abstract class $CoinCopyWith<$Res> {
       double current_price,
       int market_cap,
       int market_cap_rank,
-      int total_volume,
+      @nullable double fully_diluted_valuation,
+      double total_volume,
       @nullable double high_24h,
       @nullable double low_24h,
       @nullable double price_change_24h,
@@ -138,6 +147,7 @@ abstract class $CoinCopyWith<$Res> {
       @nullable double market_cap_change_percentage_24h,
       @nullable double circulating_supply,
       @nullable double total_supply,
+      @nullable double max_supply,
       @nullable double ath,
       @nullable double ath_change_percentage,
       @nullable String ath_date,
@@ -164,6 +174,7 @@ class _$CoinCopyWithImpl<$Res> implements $CoinCopyWith<$Res> {
     Object current_price = freezed,
     Object market_cap = freezed,
     Object market_cap_rank = freezed,
+    Object fully_diluted_valuation = freezed,
     Object total_volume = freezed,
     Object high_24h = freezed,
     Object low_24h = freezed,
@@ -173,6 +184,7 @@ class _$CoinCopyWithImpl<$Res> implements $CoinCopyWith<$Res> {
     Object market_cap_change_percentage_24h = freezed,
     Object circulating_supply = freezed,
     Object total_supply = freezed,
+    Object max_supply = freezed,
     Object ath = freezed,
     Object ath_change_percentage = freezed,
     Object ath_date = freezed,
@@ -194,8 +206,12 @@ class _$CoinCopyWithImpl<$Res> implements $CoinCopyWith<$Res> {
       market_cap_rank: market_cap_rank == freezed
           ? _value.market_cap_rank
           : market_cap_rank as int,
-      total_volume:
-          total_volume == freezed ? _value.total_volume : total_volume as int,
+      fully_diluted_valuation: fully_diluted_valuation == freezed
+          ? _value.fully_diluted_valuation
+          : fully_diluted_valuation as double,
+      total_volume: total_volume == freezed
+          ? _value.total_volume
+          : total_volume as double,
       high_24h: high_24h == freezed ? _value.high_24h : high_24h as double,
       low_24h: low_24h == freezed ? _value.low_24h : low_24h as double,
       price_change_24h: price_change_24h == freezed
@@ -217,6 +233,8 @@ class _$CoinCopyWithImpl<$Res> implements $CoinCopyWith<$Res> {
       total_supply: total_supply == freezed
           ? _value.total_supply
           : total_supply as double,
+      max_supply:
+          max_supply == freezed ? _value.max_supply : max_supply as double,
       ath: ath == freezed ? _value.ath : ath as double,
       ath_change_percentage: ath_change_percentage == freezed
           ? _value.ath_change_percentage
@@ -247,7 +265,8 @@ abstract class _$CoinCopyWith<$Res> implements $CoinCopyWith<$Res> {
       double current_price,
       int market_cap,
       int market_cap_rank,
-      int total_volume,
+      @nullable double fully_diluted_valuation,
+      double total_volume,
       @nullable double high_24h,
       @nullable double low_24h,
       @nullable double price_change_24h,
@@ -256,6 +275,7 @@ abstract class _$CoinCopyWith<$Res> implements $CoinCopyWith<$Res> {
       @nullable double market_cap_change_percentage_24h,
       @nullable double circulating_supply,
       @nullable double total_supply,
+      @nullable double max_supply,
       @nullable double ath,
       @nullable double ath_change_percentage,
       @nullable String ath_date,
@@ -283,6 +303,7 @@ class __$CoinCopyWithImpl<$Res> extends _$CoinCopyWithImpl<$Res>
     Object current_price = freezed,
     Object market_cap = freezed,
     Object market_cap_rank = freezed,
+    Object fully_diluted_valuation = freezed,
     Object total_volume = freezed,
     Object high_24h = freezed,
     Object low_24h = freezed,
@@ -292,6 +313,7 @@ class __$CoinCopyWithImpl<$Res> extends _$CoinCopyWithImpl<$Res>
     Object market_cap_change_percentage_24h = freezed,
     Object circulating_supply = freezed,
     Object total_supply = freezed,
+    Object max_supply = freezed,
     Object ath = freezed,
     Object ath_change_percentage = freezed,
     Object ath_date = freezed,
@@ -311,7 +333,10 @@ class __$CoinCopyWithImpl<$Res> extends _$CoinCopyWithImpl<$Res>
       market_cap_rank == freezed
           ? _value.market_cap_rank
           : market_cap_rank as int,
-      total_volume == freezed ? _value.total_volume : total_volume as int,
+      fully_diluted_valuation == freezed
+          ? _value.fully_diluted_valuation
+          : fully_diluted_valuation as double,
+      total_volume == freezed ? _value.total_volume : total_volume as double,
       high_24h == freezed ? _value.high_24h : high_24h as double,
       low_24h == freezed ? _value.low_24h : low_24h as double,
       price_change_24h == freezed
@@ -330,6 +355,7 @@ class __$CoinCopyWithImpl<$Res> extends _$CoinCopyWithImpl<$Res>
           ? _value.circulating_supply
           : circulating_supply as double,
       total_supply == freezed ? _value.total_supply : total_supply as double,
+      max_supply == freezed ? _value.max_supply : max_supply as double,
       ath == freezed ? _value.ath : ath as double,
       ath_change_percentage == freezed
           ? _value.ath_change_percentage
@@ -356,6 +382,7 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
       this.current_price,
       this.market_cap,
       this.market_cap_rank,
+      @nullable this.fully_diluted_valuation,
       this.total_volume,
       @nullable this.high_24h,
       @nullable this.low_24h,
@@ -365,6 +392,7 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
       @nullable this.market_cap_change_percentage_24h,
       @nullable this.circulating_supply,
       @nullable this.total_supply,
+      @nullable this.max_supply,
       @nullable this.ath,
       @nullable this.ath_change_percentage,
       @nullable this.ath_date,
@@ -401,7 +429,10 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
   @override
   final int market_cap_rank;
   @override
-  final int total_volume;
+  @nullable
+  final double fully_diluted_valuation;
+  @override
+  final double total_volume;
   @override
   @nullable
   final double high_24h;
@@ -428,6 +459,9 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
   final double total_supply;
   @override
   @nullable
+  final double max_supply;
+  @override
+  @nullable
   final double ath;
   @override
   @nullable
@@ -452,7 +486,7 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Coin(id: $id, symbol: $symbol, name: $name, image: $image, current_price: $current_price, market_cap: $market_cap, market_cap_rank: $market_cap_rank, total_volume: $total_volume, high_24h: $high_24h, low_24h: $low_24h, price_change_24h: $price_change_24h, price_change_percentage_24h: $price_change_percentage_24h, market_cap_change_24h: $market_cap_change_24h, market_cap_change_percentage_24h: $market_cap_change_percentage_24h, circulating_supply: $circulating_supply, total_supply: $total_supply, ath: $ath, ath_change_percentage: $ath_change_percentage, ath_date: $ath_date, atl: $atl, atl_change_percentage: $atl_change_percentage, atl_date: $atl_date, roi: $roi, last_updated: $last_updated)';
+    return 'Coin(id: $id, symbol: $symbol, name: $name, image: $image, current_price: $current_price, market_cap: $market_cap, market_cap_rank: $market_cap_rank, fully_diluted_valuation: $fully_diluted_valuation, total_volume: $total_volume, high_24h: $high_24h, low_24h: $low_24h, price_change_24h: $price_change_24h, price_change_percentage_24h: $price_change_percentage_24h, market_cap_change_24h: $market_cap_change_24h, market_cap_change_percentage_24h: $market_cap_change_percentage_24h, circulating_supply: $circulating_supply, total_supply: $total_supply, max_supply: $max_supply, ath: $ath, ath_change_percentage: $ath_change_percentage, ath_date: $ath_date, atl: $atl, atl_change_percentage: $atl_change_percentage, atl_date: $atl_date, roi: $roi, last_updated: $last_updated)';
   }
 
   @override
@@ -467,6 +501,8 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
       ..add(DiagnosticsProperty('current_price', current_price))
       ..add(DiagnosticsProperty('market_cap', market_cap))
       ..add(DiagnosticsProperty('market_cap_rank', market_cap_rank))
+      ..add(DiagnosticsProperty(
+          'fully_diluted_valuation', fully_diluted_valuation))
       ..add(DiagnosticsProperty('total_volume', total_volume))
       ..add(DiagnosticsProperty('high_24h', high_24h))
       ..add(DiagnosticsProperty('low_24h', low_24h))
@@ -478,6 +514,7 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
           'market_cap_change_percentage_24h', market_cap_change_percentage_24h))
       ..add(DiagnosticsProperty('circulating_supply', circulating_supply))
       ..add(DiagnosticsProperty('total_supply', total_supply))
+      ..add(DiagnosticsProperty('max_supply', max_supply))
       ..add(DiagnosticsProperty('ath', ath))
       ..add(DiagnosticsProperty('ath_change_percentage', ath_change_percentage))
       ..add(DiagnosticsProperty('ath_date', ath_date))
@@ -509,6 +546,9 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
             (identical(other.market_cap_rank, market_cap_rank) ||
                 const DeepCollectionEquality()
                     .equals(other.market_cap_rank, market_cap_rank)) &&
+            (identical(other.fully_diluted_valuation, fully_diluted_valuation) ||
+                const DeepCollectionEquality().equals(
+                    other.fully_diluted_valuation, fully_diluted_valuation)) &&
             (identical(other.total_volume, total_volume) ||
                 const DeepCollectionEquality()
                     .equals(other.total_volume, total_volume)) &&
@@ -538,16 +578,11 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
             (identical(other.total_supply, total_supply) ||
                 const DeepCollectionEquality()
                     .equals(other.total_supply, total_supply)) &&
-            (identical(other.ath, ath) ||
-                const DeepCollectionEquality().equals(other.ath, ath)) &&
-            (identical(other.ath_change_percentage, ath_change_percentage) ||
-                const DeepCollectionEquality().equals(
-                    other.ath_change_percentage, ath_change_percentage)) &&
-            (identical(other.ath_date, ath_date) ||
-                const DeepCollectionEquality()
-                    .equals(other.ath_date, ath_date)) &&
-            (identical(other.atl, atl) ||
-                const DeepCollectionEquality().equals(other.atl, atl)) &&
+            (identical(other.max_supply, max_supply) || const DeepCollectionEquality().equals(other.max_supply, max_supply)) &&
+            (identical(other.ath, ath) || const DeepCollectionEquality().equals(other.ath, ath)) &&
+            (identical(other.ath_change_percentage, ath_change_percentage) || const DeepCollectionEquality().equals(other.ath_change_percentage, ath_change_percentage)) &&
+            (identical(other.ath_date, ath_date) || const DeepCollectionEquality().equals(other.ath_date, ath_date)) &&
+            (identical(other.atl, atl) || const DeepCollectionEquality().equals(other.atl, atl)) &&
             (identical(other.atl_change_percentage, atl_change_percentage) || const DeepCollectionEquality().equals(other.atl_change_percentage, atl_change_percentage)) &&
             (identical(other.atl_date, atl_date) || const DeepCollectionEquality().equals(other.atl_date, atl_date)) &&
             (identical(other.roi, roi) || const DeepCollectionEquality().equals(other.roi, roi)) &&
@@ -564,6 +599,7 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
       const DeepCollectionEquality().hash(current_price) ^
       const DeepCollectionEquality().hash(market_cap) ^
       const DeepCollectionEquality().hash(market_cap_rank) ^
+      const DeepCollectionEquality().hash(fully_diluted_valuation) ^
       const DeepCollectionEquality().hash(total_volume) ^
       const DeepCollectionEquality().hash(high_24h) ^
       const DeepCollectionEquality().hash(low_24h) ^
@@ -573,6 +609,7 @@ class _$_Coin with DiagnosticableTreeMixin implements _Coin {
       const DeepCollectionEquality().hash(market_cap_change_percentage_24h) ^
       const DeepCollectionEquality().hash(circulating_supply) ^
       const DeepCollectionEquality().hash(total_supply) ^
+      const DeepCollectionEquality().hash(max_supply) ^
       const DeepCollectionEquality().hash(ath) ^
       const DeepCollectionEquality().hash(ath_change_percentage) ^
       const DeepCollectionEquality().hash(ath_date) ^
@@ -601,7 +638,8 @@ abstract class _Coin implements Coin {
       double current_price,
       int market_cap,
       int market_cap_rank,
-      int total_volume,
+      @nullable double fully_diluted_valuation,
+      double total_volume,
       @nullable double high_24h,
       @nullable double low_24h,
       @nullable double price_change_24h,
@@ -610,6 +648,7 @@ abstract class _Coin implements Coin {
       @nullable double market_cap_change_percentage_24h,
       @nullable double circulating_supply,
       @nullable double total_supply,
+      @nullable double max_supply,
       @nullable double ath,
       @nullable double ath_change_percentage,
       @nullable String ath_date,
@@ -636,7 +675,10 @@ abstract class _Coin implements Coin {
   @override
   int get market_cap_rank;
   @override
-  int get total_volume;
+  @nullable
+  double get fully_diluted_valuation;
+  @override
+  double get total_volume;
   @override
   @nullable
   double get high_24h;
@@ -661,6 +703,9 @@ abstract class _Coin implements Coin {
   @override
   @nullable
   double get total_supply;
+  @override
+  @nullable
+  double get max_supply;
   @override
   @nullable
   double get ath;
@@ -697,12 +742,17 @@ class _$PortfolioItemTearOff {
 
 // ignore: unused_element
   _PortfolioItem call(
-      String coindId, double coinAmount, double price, DateTime purchaseDate) {
+      {String coindId,
+      String portfolioId,
+      double coinAmount,
+      double price,
+      DateTime purchaseDate}) {
     return _PortfolioItem(
-      coindId,
-      coinAmount,
-      price,
-      purchaseDate,
+      coindId: coindId,
+      portfolioId: portfolioId,
+      coinAmount: coinAmount,
+      price: price,
+      purchaseDate: purchaseDate,
     );
   }
 }
@@ -712,6 +762,7 @@ const $PortfolioItem = _$PortfolioItemTearOff();
 
 mixin _$PortfolioItem {
   String get coindId;
+  String get portfolioId;
   double get coinAmount;
   double get price;
   DateTime get purchaseDate;
@@ -725,7 +776,11 @@ abstract class $PortfolioItemCopyWith<$Res> {
           PortfolioItem value, $Res Function(PortfolioItem) then) =
       _$PortfolioItemCopyWithImpl<$Res>;
   $Res call(
-      {String coindId, double coinAmount, double price, DateTime purchaseDate});
+      {String coindId,
+      String portfolioId,
+      double coinAmount,
+      double price,
+      DateTime purchaseDate});
 }
 
 class _$PortfolioItemCopyWithImpl<$Res>
@@ -739,12 +794,15 @@ class _$PortfolioItemCopyWithImpl<$Res>
   @override
   $Res call({
     Object coindId = freezed,
+    Object portfolioId = freezed,
     Object coinAmount = freezed,
     Object price = freezed,
     Object purchaseDate = freezed,
   }) {
     return _then(_value.copyWith(
       coindId: coindId == freezed ? _value.coindId : coindId as String,
+      portfolioId:
+          portfolioId == freezed ? _value.portfolioId : portfolioId as String,
       coinAmount:
           coinAmount == freezed ? _value.coinAmount : coinAmount as double,
       price: price == freezed ? _value.price : price as double,
@@ -762,7 +820,11 @@ abstract class _$PortfolioItemCopyWith<$Res>
       __$PortfolioItemCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String coindId, double coinAmount, double price, DateTime purchaseDate});
+      {String coindId,
+      String portfolioId,
+      double coinAmount,
+      double price,
+      DateTime purchaseDate});
 }
 
 class __$PortfolioItemCopyWithImpl<$Res>
@@ -778,15 +840,21 @@ class __$PortfolioItemCopyWithImpl<$Res>
   @override
   $Res call({
     Object coindId = freezed,
+    Object portfolioId = freezed,
     Object coinAmount = freezed,
     Object price = freezed,
     Object purchaseDate = freezed,
   }) {
     return _then(_PortfolioItem(
-      coindId == freezed ? _value.coindId : coindId as String,
-      coinAmount == freezed ? _value.coinAmount : coinAmount as double,
-      price == freezed ? _value.price : price as double,
-      purchaseDate == freezed ? _value.purchaseDate : purchaseDate as DateTime,
+      coindId: coindId == freezed ? _value.coindId : coindId as String,
+      portfolioId:
+          portfolioId == freezed ? _value.portfolioId : portfolioId as String,
+      coinAmount:
+          coinAmount == freezed ? _value.coinAmount : coinAmount as double,
+      price: price == freezed ? _value.price : price as double,
+      purchaseDate: purchaseDate == freezed
+          ? _value.purchaseDate
+          : purchaseDate as DateTime,
     ));
   }
 }
@@ -794,17 +862,19 @@ class __$PortfolioItemCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PortfolioItem with DiagnosticableTreeMixin implements _PortfolioItem {
   const _$_PortfolioItem(
-      this.coindId, this.coinAmount, this.price, this.purchaseDate)
-      : assert(coindId != null),
-        assert(coinAmount != null),
-        assert(price != null),
-        assert(purchaseDate != null);
+      {this.coindId,
+      this.portfolioId,
+      this.coinAmount,
+      this.price,
+      this.purchaseDate});
 
   factory _$_PortfolioItem.fromJson(Map<String, dynamic> json) =>
       _$_$_PortfolioItemFromJson(json);
 
   @override
   final String coindId;
+  @override
+  final String portfolioId;
   @override
   final double coinAmount;
   @override
@@ -814,7 +884,7 @@ class _$_PortfolioItem with DiagnosticableTreeMixin implements _PortfolioItem {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PortfolioItem(coindId: $coindId, coinAmount: $coinAmount, price: $price, purchaseDate: $purchaseDate)';
+    return 'PortfolioItem(coindId: $coindId, portfolioId: $portfolioId, coinAmount: $coinAmount, price: $price, purchaseDate: $purchaseDate)';
   }
 
   @override
@@ -823,6 +893,7 @@ class _$_PortfolioItem with DiagnosticableTreeMixin implements _PortfolioItem {
     properties
       ..add(DiagnosticsProperty('type', 'PortfolioItem'))
       ..add(DiagnosticsProperty('coindId', coindId))
+      ..add(DiagnosticsProperty('portfolioId', portfolioId))
       ..add(DiagnosticsProperty('coinAmount', coinAmount))
       ..add(DiagnosticsProperty('price', price))
       ..add(DiagnosticsProperty('purchaseDate', purchaseDate));
@@ -835,6 +906,9 @@ class _$_PortfolioItem with DiagnosticableTreeMixin implements _PortfolioItem {
             (identical(other.coindId, coindId) ||
                 const DeepCollectionEquality()
                     .equals(other.coindId, coindId)) &&
+            (identical(other.portfolioId, portfolioId) ||
+                const DeepCollectionEquality()
+                    .equals(other.portfolioId, portfolioId)) &&
             (identical(other.coinAmount, coinAmount) ||
                 const DeepCollectionEquality()
                     .equals(other.coinAmount, coinAmount)) &&
@@ -849,6 +923,7 @@ class _$_PortfolioItem with DiagnosticableTreeMixin implements _PortfolioItem {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(coindId) ^
+      const DeepCollectionEquality().hash(portfolioId) ^
       const DeepCollectionEquality().hash(coinAmount) ^
       const DeepCollectionEquality().hash(price) ^
       const DeepCollectionEquality().hash(purchaseDate);
@@ -864,14 +939,20 @@ class _$_PortfolioItem with DiagnosticableTreeMixin implements _PortfolioItem {
 }
 
 abstract class _PortfolioItem implements PortfolioItem {
-  const factory _PortfolioItem(String coindId, double coinAmount, double price,
-      DateTime purchaseDate) = _$_PortfolioItem;
+  const factory _PortfolioItem(
+      {String coindId,
+      String portfolioId,
+      double coinAmount,
+      double price,
+      DateTime purchaseDate}) = _$_PortfolioItem;
 
   factory _PortfolioItem.fromJson(Map<String, dynamic> json) =
       _$_PortfolioItem.fromJson;
 
   @override
   String get coindId;
+  @override
+  String get portfolioId;
   @override
   double get coinAmount;
   @override
