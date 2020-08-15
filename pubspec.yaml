@@ -50,7 +50,9 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "dev_assets/ic_launcher.png"
+  image_path: "dev_assets/fall_back.png"
+  adaptive_icon_foreground: "dev_assets/ic_launcher_foreground.png"
+  adaptive_icon_background: "dev_assets/ic_launcher_background.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 dependency_overrides:
