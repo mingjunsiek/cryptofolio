@@ -8,11 +8,11 @@ abstract class PortfolioState extends Equatable {
   List<Object> get props => [];
 }
 
-class PortfolioInitial extends PortfolioState {}
+class PortfolioInProgress extends PortfolioState {}
 
 class PortfolioIsEmpty extends PortfolioState {}
 
-class PortfolioInProgress extends PortfolioState {}
+class PortfolioInitial extends PortfolioState {}
 
 class PortfolioIsInitialized extends PortfolioState {
   final double portfolioValue;
@@ -38,7 +38,7 @@ class PortfolioIsInitialized extends PortfolioState {
 
   @override
   String toString() =>
-      'PortfolioLoadSuccess { todos: $portfolioValue $portfolioTotalSpent }';
+      'PortfolioIsInitialized { todos: $portfolioValue $portfolioTotalSpent }';
 }
 
 class PortfolioIsHidden extends PortfolioState {}

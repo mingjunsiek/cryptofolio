@@ -121,11 +121,14 @@ class CoinLists extends StatelessWidget {
 }
 
 double _getFavouriteHeight(
-    Favourites favourites, double displayHeight, double top) {
+  Favourites favourites,
+  double displayHeight,
+  double top,
+) {
   final finalHeight = (displayHeight - top - kToolbarHeight);
-  if (favourites == null) return finalHeight * 0.5;
+  if (favourites == null) return finalHeight * 0.7;
   if (favourites.favouriteList.length == 2)
     return finalHeight * 0.25;
   else if (favourites.favouriteList.length == 1) return displayHeight * 0.10;
-  return finalHeight * 0.35;
+  return finalHeight * 0.40;
 }

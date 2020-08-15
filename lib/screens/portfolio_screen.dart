@@ -28,11 +28,16 @@ class PortfolioScreen extends StatelessWidget {
           );
         }
 
-        if (state is PortfolioInitial) {
+        if (state is PortfolioIsInitialized) {
+          return Center();
+        }
+
+        if (state is PortfolioInitial || state is PortfolioIsEmpty) {
           return InitialPortfolio(context.bloc<PortfolioBloc>());
         }
 
-        if (state is PortfolioPageLoadSuccess) {
+        if (state is PortfolioPageLoadSuccess ||
+            state is PortfolioIsInitialized) {
           return Scaffold(
             body: Container(
               width: double.infinity,

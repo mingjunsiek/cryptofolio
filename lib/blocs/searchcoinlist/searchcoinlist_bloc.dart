@@ -30,7 +30,7 @@ class SearchcoinlistBloc
         favouriteList = Favourites(_prefs.getStringList("favourites"));
       }
     } catch (e) {
-      print("Error in search bloc");
+      print("Error in SearchCoinListBloc: getSharedPreferences");
     }
   }
 

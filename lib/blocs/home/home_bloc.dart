@@ -25,7 +25,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         print("Finish loading coinlist");
         yield HomeLoadSuccess(coinList: coinList);
       } catch (e) {
-        yield HomeLoadError(e);
+        yield HomeLoadError("Home Load Error");
       }
     }
   }

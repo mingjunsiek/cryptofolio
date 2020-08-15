@@ -23,22 +23,11 @@ class SearchCoinList extends StatelessWidget {
           return DefaultTextCard(
               text: "FavouritesLoadFailure: Fail to load favourites");
         }
-        // if (state is SearchCoinListFavouriteAdded)
-        //   Scaffold.of(context).showSnackBar(
-        //     SnackBar(
-        //       duration: Duration(milliseconds: 500),
-        //       content: Text('Added to Favourites'),
-        //     ),
-        //   );
-        // if (state is SearchCoinListFavouriteRemoved)
-        //   Scaffold.of(context).showSnackBar(
-        //     SnackBar(
-        //       duration: Duration(milliseconds: 500),
-        //       content: Text('Removed from Favourites'),
-        //     ),
-        //   );
       },
       builder: (context, state) {
+        if (state is SearchCoinListInitial) {
+          return Center();
+        }
         if (state is SearchCoinListIsLoading) {
           return Center(
             child: CircularProgressIndicator(),

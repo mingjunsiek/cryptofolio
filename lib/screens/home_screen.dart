@@ -36,17 +36,13 @@ class HomeScreen extends StatelessWidget {
               BlocProvider<FavouritesBloc>(
                 create: (context) => FavouritesBloc()..add(FavouritesFetch()),
               ),
-              BlocProvider<PortfolioBloc>(
-                create: (context) =>
-                    PortfolioBloc(state.coinList)..add(PortfolioFetch()),
-              ),
             ],
             child: Scaffold(
               body: Container(
                 margin: MediaQuery.of(context).padding,
                 child: SingleChildScrollView(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       BlocProvider.value(
                         value: portfolioBloc,

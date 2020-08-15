@@ -44,6 +44,9 @@ class _SearchScreenState extends State<SearchScreen> {
           );
       },
       builder: (context, state) {
+        if (state is SearchInitial) {
+          return Center();
+        }
         if (state is SearchIsLoading) {
           return Center(
             child: CircularProgressIndicator(),
@@ -86,7 +89,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             height: (displayHeight(context) -
                                     MediaQuery.of(context).padding.top -
                                     kToolbarHeight) *
-                                0.70,
+                                0.80,
                             child: MediaQuery.removePadding(
                               context: context,
                               removeTop: true,

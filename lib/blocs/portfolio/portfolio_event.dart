@@ -20,6 +20,20 @@ class PortfolioPageHide extends PortfolioEvent {}
 
 class PortfolioPageUnHide extends PortfolioEvent {}
 
+class PortfolioPageEditItem extends PortfolioEvent {
+  final PortfolioItem item;
+  const PortfolioPageEditItem({
+    this.item,
+  });
+}
+
+class PortfolioPageDeleteItem extends PortfolioEvent {
+  final String portfolioId;
+  const PortfolioPageDeleteItem({
+    this.portfolioId,
+  });
+}
+
 class AddPortfolioItem extends PortfolioEvent {
   final String coindId;
   final double coinAmount;

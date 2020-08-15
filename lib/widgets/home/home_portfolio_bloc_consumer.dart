@@ -18,14 +18,14 @@ class HomePortfolio extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state is PortfolioInitial) {
+        if (state is PortfolioInitial || state is PortfolioPageLoadSuccess) {
           return IsLoadingCard();
         }
         if (state is PortfolioInProgress) {
           return IsLoadingCard();
         }
         if (state is PortfolioIsEmpty) {
-          return DefaultTextCard(text: "PortfolioIsEmpty");
+          return DefaultTextCard(text: "Start Adding Items To Your Portfolio!");
         }
         if (state is PortfolioIsInitialized) {
           return HomePortfolioCard(

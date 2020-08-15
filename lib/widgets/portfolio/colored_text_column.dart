@@ -46,12 +46,14 @@ class ColoredTextColumn extends StatelessWidget {
               ),
             ),
           if (!profit)
-            Text(
-              '$leading${this.body}$tail',
-              style: TextStyle(
-                color: Colors.red[700],
-                fontWeight: FontWeight.w600,
-                fontSize: this.titleFontSize,
+            FittedBox(
+              child: Text(
+                '$leading${this.body}$tail',
+                style: TextStyle(
+                  color: Colors.red[700],
+                  fontWeight: FontWeight.w600,
+                  fontSize: this.titleFontSize,
+                ),
               ),
             ),
         ],

@@ -743,7 +743,7 @@ class _$PortfolioItemTearOff {
 // ignore: unused_element
   _PortfolioItem call(
       {String coindId,
-      String portfolioId,
+      @nullable String portfolioId,
       double coinAmount,
       double price,
       DateTime purchaseDate}) {
@@ -762,6 +762,7 @@ const $PortfolioItem = _$PortfolioItemTearOff();
 
 mixin _$PortfolioItem {
   String get coindId;
+  @nullable
   String get portfolioId;
   double get coinAmount;
   double get price;
@@ -777,7 +778,7 @@ abstract class $PortfolioItemCopyWith<$Res> {
       _$PortfolioItemCopyWithImpl<$Res>;
   $Res call(
       {String coindId,
-      String portfolioId,
+      @nullable String portfolioId,
       double coinAmount,
       double price,
       DateTime purchaseDate});
@@ -821,7 +822,7 @@ abstract class _$PortfolioItemCopyWith<$Res>
   @override
   $Res call(
       {String coindId,
-      String portfolioId,
+      @nullable String portfolioId,
       double coinAmount,
       double price,
       DateTime purchaseDate});
@@ -863,7 +864,7 @@ class __$PortfolioItemCopyWithImpl<$Res>
 class _$_PortfolioItem with DiagnosticableTreeMixin implements _PortfolioItem {
   const _$_PortfolioItem(
       {this.coindId,
-      this.portfolioId,
+      @nullable this.portfolioId,
       this.coinAmount,
       this.price,
       this.purchaseDate});
@@ -874,6 +875,7 @@ class _$_PortfolioItem with DiagnosticableTreeMixin implements _PortfolioItem {
   @override
   final String coindId;
   @override
+  @nullable
   final String portfolioId;
   @override
   final double coinAmount;
@@ -941,7 +943,7 @@ class _$_PortfolioItem with DiagnosticableTreeMixin implements _PortfolioItem {
 abstract class _PortfolioItem implements PortfolioItem {
   const factory _PortfolioItem(
       {String coindId,
-      String portfolioId,
+      @nullable String portfolioId,
       double coinAmount,
       double price,
       DateTime purchaseDate}) = _$_PortfolioItem;
@@ -952,6 +954,7 @@ abstract class _PortfolioItem implements PortfolioItem {
   @override
   String get coindId;
   @override
+  @nullable
   String get portfolioId;
   @override
   double get coinAmount;

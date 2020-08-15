@@ -41,7 +41,7 @@ abstract class Coin with _$Coin {
 abstract class PortfolioItem with _$PortfolioItem {
   const factory PortfolioItem({
     String coindId,
-    String portfolioId,
+    @nullable String portfolioId,
     double coinAmount,
     double price,
     DateTime purchaseDate,

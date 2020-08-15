@@ -5,10 +5,14 @@ import 'package:bloc/bloc.dart';
 import 'package:cryptofolio/models/freezed_classes.dart';
 import 'package:cryptofolio/repositories/coin_repository.dart';
 import 'package:cryptofolio/widgets/home/coin_card/coin_lists.dart';
+import 'package:cryptofolio/widgets/portfolio/date_textfield.dart';
+import 'package:cryptofolio/widgets/portfolio/dialog_textfield.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 import 'package:random_color/random_color.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,10 +22,8 @@ part 'portfolio_event.dart';
 part 'portfolio_state.dart';
 
 class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
-  CoinRepository _coinRepository;
   List<Coin> _coinList;
-  List<Coin> _portfolioCoinsList;
-  List<PortfolioItem> _portfolioItems = [];
+  List<PortfolioItem> _portfolioItems;
   double _portfolioTotalSpent = 0.0;
   double _portfolioValue = 0.0;
   double _portfolioTotalGain = 0.0;
@@ -32,13 +34,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
   Map<String, Map<String, dynamic>> pieChartInfo;
   List<PieChartSectionData> pieChartSectionData = [];
 
-  // double portfolioDaysGain = 0.0;
-  // double portfolioDaysGainPercentage = 0.0;
-  // DateTime currentDateTime = DateTime.now();
-
-  PortfolioBloc(this._coinList) : super(PortfolioInProgress()) {
-    getSharedPreferences();
-  }
+  PortfolioBloc(this._coinList) : super(PortfolioInProgress());
 
   void getSharedPreferences() async {
     try {
@@ -46,12 +42,14 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
       if (!_prefs.containsKey("portfolio"))
         _portfolioItems = [];
       else {
-        final _decodedItems = jsonDecode(_prefs.getString("portfolio"));
-        _portfolioItems =
-            _decodedItems.map((item) => PortfolioItem.fromJson(item)).toList();
+        final List<dynamic> _decodedItems =
+            jsonDecode(_prefs.getString("portfolio"));
+        _portfolioItems = _decodedItems.map((item) {
+          return PortfolioItem.fromJson(item);
+        }).toList();
       }
     } catch (e) {
-      print("Error in search bloc");
+      print("Error in PortfolioBloc: getSharedPreferences");
     }
   }
 
@@ -116,24 +114,62 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
 
       _portfolioItems.add(newItem);
       String jsonTags = jsonEncode(_portfolioItems);
-      _prefs.setString('portfolio', jsonTags);
+      await _prefs.setString('portfolio', jsonTags);
+      _updatePortfolio();
+      yield* _mapPortfolioPageToState();
+    }
+
+    if (event is PortfolioPageEditItem) {
+      yield PortfolioInProgress();
+      _portfolioItems = _portfolioItems.map((currentItem) {
+        if (currentItem.portfolioId == event.item.portfolioId) {
+          return event.item;
+        }
+        return currentItem;
+      }).toList();
+      print('After: $_portfolioItems');
+      String jsonTags = jsonEncode(_portfolioItems);
+      await _prefs.setString('portfolio', jsonTags);
+      _updatePortfolio();
+      yield* _mapPortfolioPageToState();
+    }
+
+    if (event is PortfolioPageDeleteItem) {
+      yield PortfolioInProgress();
+      _portfolioItems.removeWhere((currentItem) {
+        return currentItem.portfolioId == event.portfolioId;
+      });
+      String jsonTags = jsonEncode(_portfolioItems);
+      await _prefs.setString('portfolio', jsonTags);
       _updatePortfolio();
       yield* _mapPortfolioPageToState();
     }
   }
 
+  void setSharedPreferences() {}
+
   Stream<PortfolioState> _mapHomePortfolioToState() async* {
     yield PortfolioInProgress();
     _uuid = Uuid();
+    _portfolioItems = [];
+    _portfolioTotalSpent = 0.0;
+    _portfolioValue = 0.0;
+    _portfolioTotalGain = 0.0;
+    _portfolioTotalGainPercentage = 0.0;
     try {
-      // this._prefs = await SharedPreferences.getInstance();
+      this._prefs = await SharedPreferences.getInstance();
+      if (_prefs.containsKey("portfolio")) {
+        final List<dynamic> _decodedItems =
+            jsonDecode(_prefs.getString("portfolio"));
+        _portfolioItems = _decodedItems.map((item) {
+          return PortfolioItem.fromJson(item);
+        }).toList();
+        _updatePortfolio();
+      }
 
       if (_portfolioItems.isEmpty) {
         yield PortfolioIsEmpty();
       } else {
-        // final _decodedItems = jsonDecode(_prefs.getString("portfolio"));
-        // _portfolioItems =
-        //     _decodedItems.map((item) => PortfolioItem.fromJson(item)).toList();
         yield PortfolioIsInitialized(
           _portfolioValue,
           _portfolioTotalSpent,
@@ -171,7 +207,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
       pieChartInfo = new Map();
       print('After Decode: $_portfolioItems');
       // print(_coinList);
-      _portfolioCoinsList = _coinList.where((coin) {
+      _coinList.where((coin) {
         final result = _portfolioItems.where((portfolioCoin) {
           if (portfolioCoin.coindId == coin.symbol) {
             this._portfolioValue +=
@@ -244,5 +280,110 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
     } catch (e) {
       throw "Error in _updatePortFolio";
     }
+  }
+
+  Future<void> addDialog(
+    BuildContext ctx,
+    GlobalKey<FormState> dialogKey,
+    TextEditingController coinCtrl,
+    TextEditingController amtCtrl,
+    TextEditingController priceCtrl,
+    TextEditingController dateCtrl,
+    bool isEdit,
+    PortfolioItem item,
+  ) async {
+    if (isEdit) {
+      coinCtrl.text = item.coindId.toString();
+      amtCtrl.text = item.coinAmount.toString();
+      priceCtrl.text = item.price.toString();
+      dateCtrl.text = item.purchaseDate.toString();
+    }
+
+    return showDialog<void>(
+      context: ctx,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).cardTheme.color,
+          title: Text('Add coin'),
+          content: SingleChildScrollView(
+            child: Form(
+              key: dialogKey,
+              child: ListBody(
+                children: <Widget>[
+                  DialogTextField(
+                    controller: coinCtrl,
+                    icon: null,
+                    title: 'Coin Symbol',
+                    isText: true,
+                    validator: 'a symbol',
+                  ),
+                  DialogTextField(
+                    controller: amtCtrl,
+                    icon: null,
+                    title: 'Amount',
+                    isText: false,
+                    validator: 'an amount',
+                  ),
+                  DialogTextField(
+                    controller: priceCtrl,
+                    icon: null,
+                    title: 'Price',
+                    isText: false,
+                    validator: 'a price',
+                  ),
+                  DateTextField(
+                    controller: dateCtrl,
+                    icon: null,
+                    title: 'Purchase Date',
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: isEdit ? Text('Edit') : Text('Add'),
+              onPressed: () {
+                if (dialogKey.currentState.validate()) {
+                  final _enteredSymbol = coinCtrl.text.toLowerCase();
+                  final _enteredAmount = double.parse(amtCtrl.text);
+                  final _enteredPrice = double.parse(priceCtrl.text);
+                  final DateTime _enteredDate =
+                      DateFormat('dd/MM/yyyy').parse(dateCtrl.text);
+                  if (!isEdit) {
+                    ctx.bloc<PortfolioBloc>().add(
+                          AddPortfolioItem(
+                              coinAmount: _enteredAmount,
+                              coindId: _enteredSymbol,
+                              price: _enteredPrice,
+                              purchaseDate: _enteredDate),
+                        );
+                  } else {
+                    final portItem = PortfolioItem(
+                      portfolioId: item.portfolioId,
+                      coinAmount: _enteredAmount,
+                      coindId: _enteredSymbol,
+                      price: _enteredPrice,
+                      purchaseDate: _enteredDate,
+                    );
+                    ctx.bloc<PortfolioBloc>().add(
+                          PortfolioPageEditItem(item: portItem),
+                        );
+                  }
+                  Navigator.of(context).pop();
+                }
+              },
+            ),
+            FlatButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

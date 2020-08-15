@@ -8,14 +8,26 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: FlatButton(
-          child: Text("PORTFOLIO"),
-          onPressed: () {
-            // print(Navigator.of(context).canPop());
-            Navigator.pushNamed(context, CryptofolioRoutes.portfolio);
-          },
-        ),
-      ),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Developed by MJ Siek",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            "Powered by CoinGecko",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      )),
     );
   }
 }

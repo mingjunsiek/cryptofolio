@@ -10,15 +10,13 @@ part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc() : super(SearchIsLoading());
+  SearchBloc() : super(SearchInitial());
 
   @override
   Stream<SearchState> mapEventToState(
     SearchEvent event,
   ) async* {
     if (event is SearchFetchTop100Coins) {
-      yield SearchIsLoading();
-      print("Finish loading coinlist");
       yield SearchLoadSuccess();
     }
   }

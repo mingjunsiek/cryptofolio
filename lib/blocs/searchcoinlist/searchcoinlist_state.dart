@@ -8,6 +8,8 @@ abstract class SearchcoinlistState extends Equatable {
   List<Object> get props => [];
 }
 
+class SearchCoinListInitial extends SearchcoinlistState {}
+
 class SearchCoinListIsLoading extends SearchcoinlistState {}
 
 class SearchCoinListLoadSuccess extends SearchcoinlistState {
