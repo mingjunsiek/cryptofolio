@@ -58,6 +58,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
     PortfolioEvent event,
   ) async* {
     if (event is PortfolioFetch) {
+      clearStorage();
       yield* _mapHomePortfolioToState();
     }
 
@@ -115,6 +116,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
       _portfolioItems.add(newItem);
       String jsonTags = jsonEncode(_portfolioItems);
       await _prefs.setString('portfolio', jsonTags);
+      clearStorage();
       _updatePortfolio();
       yield* _mapPortfolioPageToState();
     }
@@ -130,6 +132,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
       print('After: $_portfolioItems');
       String jsonTags = jsonEncode(_portfolioItems);
       await _prefs.setString('portfolio', jsonTags);
+      clearStorage();
       _updatePortfolio();
       yield* _mapPortfolioPageToState();
     }
@@ -141,9 +144,17 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
       });
       String jsonTags = jsonEncode(_portfolioItems);
       await _prefs.setString('portfolio', jsonTags);
+      clearStorage();
       _updatePortfolio();
       yield* _mapPortfolioPageToState();
     }
+  }
+
+  void clearStorage() {
+    _portfolioTotalSpent = 0.0;
+    _portfolioValue = 0.0;
+    _portfolioTotalGain = 0.0;
+    _portfolioTotalGainPercentage = 0.0;
   }
 
   void setSharedPreferences() {}
@@ -152,10 +163,6 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
     yield PortfolioInProgress();
     _uuid = Uuid();
     _portfolioItems = [];
-    _portfolioTotalSpent = 0.0;
-    _portfolioValue = 0.0;
-    _portfolioTotalGain = 0.0;
-    _portfolioTotalGainPercentage = 0.0;
     try {
       this._prefs = await SharedPreferences.getInstance();
       if (_prefs.containsKey("portfolio")) {
