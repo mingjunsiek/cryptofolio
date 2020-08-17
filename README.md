@@ -1,4 +1,5 @@
 <img src="./dev_assets/title_image.png" height="100">
+
 # CryptoFolio
 
 ### A portfolio app for your crypto assets
