@@ -50,11 +50,13 @@ class PortfolioTitle extends StatelessWidget {
                   fontSize: this.fontSize,
                 ),
               ),
-              Text(
-                '${(map[portKey]['amount'] as double).toStringAsFixed(2)}',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: this.titleFontSize,
+              FittedBox(
+                child: Text(
+                  '${(map[portKey]['amount'] as double).toStringAsFixed(2)}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: this.titleFontSize,
+                  ),
                 ),
               ),
             ],
@@ -70,11 +72,13 @@ class PortfolioTitle extends StatelessWidget {
                   fontSize: this.fontSize,
                 ),
               ),
-              Text(
-                '\$${(map[portKey]['currentValue'] as double).toStringAsFixed(2)}',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: this.titleFontSize,
+              FittedBox(
+                child: Text(
+                  '\$${(map[portKey]['currentValue'] as double).toStringAsFixed(2)}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: this.titleFontSize,
+                  ),
                 ),
               ),
             ],
