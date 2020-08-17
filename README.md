@@ -11,7 +11,7 @@ CryptoFolio is a mobile application for anyone who wants to have more control of
 
 I created this app as a side project for me to test out Flutter as well as the CoinGecko API.
 
-You can downloand this repository and run this on your phone. Currently this is configured for Android devices.
+You can download this repository and run this on your phone. Currently this is configured for Android devices.
 
 CryptoFolio is **Powered by CoinGecko**
-<img src="./dev_assets/CoinGecko.png.png" height="70">
+<img src="./dev_assets/CoinGecko.png" height="70">
