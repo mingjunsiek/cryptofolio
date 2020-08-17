@@ -3,7 +3,7 @@
 
 ### A portfolio app for your crypto assets
 
-<img src="./dev_assets/animated_gif.gif" width="300">
+<img src="./dev_assets/animated_gif.gif" width="320">
 
 ## Information
 
@@ -14,4 +14,5 @@ I created this app as a side project for me to test out Flutter as well as the C
 You can download this repository and run this on your phone. Currently this is configured for Android devices.
 
 CryptoFolio is **Powered by CoinGecko**
-<img src="./dev_assets/CoinGecko.png" height="70">
+
+<img src="./dev_assets/CoinGecko.png" height="75">
