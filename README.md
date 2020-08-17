@@ -14,4 +14,4 @@ I created this app as a side project for me to test out Flutter as well as the C
 You can downloand this repository and run this on your phone. Currently this is configured for Android devices.
 
 CryptoFolio is **Powered by CoinGecko**
-<img src="https://drive.google.com/drive/folders/1qXUuFJB-Gk2g91vyI-Qt58Z_49FLsjsZ" height="70">
+<img src="./dev_assets/CoinGecko.png.png" height="70">
