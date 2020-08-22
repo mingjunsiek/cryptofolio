@@ -14,27 +14,33 @@ class TwentyFourPercentage extends StatelessWidget {
         children: [
           Text("24hr"),
           if (percentage == null)
-            Text(
-              "-",
-              style: TextStyle(
-                color: Colors.grey[300],
-                fontWeight: FontWeight.bold,
+            FittedBox(
+              child: Text(
+                "-",
+                style: TextStyle(
+                  color: Colors.grey[300],
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           if (percentage != null && percentage < 0)
-            Text(
-              '${percentage.toStringAsFixed(2)}%',
-              style: TextStyle(
-                color: Colors.red[700],
-                fontWeight: FontWeight.bold,
+            FittedBox(
+              child: Text(
+                '${percentage.toStringAsFixed(2)}%',
+                style: TextStyle(
+                  color: Colors.red[700],
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           if (percentage != null && percentage >= 0)
-            Text(
-              '${percentage.toStringAsFixed(2)}%',
-              style: TextStyle(
-                color: Colors.green[300],
-                fontWeight: FontWeight.bold,
+            FittedBox(
+              child: Text(
+                '${percentage.toStringAsFixed(2)}%',
+                style: TextStyle(
+                  color: Colors.green[300],
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
         ],
