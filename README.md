@@ -78,8 +78,9 @@ If there are any mistakes made, users have the ability to edit/delete their prev
 <img src="./dev_assets/animated_gif.gif" width="320">
 </p>
 
-->CryptoFolio is **Powered by CoinGecko**<-
-
+<p align="center">
+CryptoFolio is **Powered by CoinGecko**
+</p>
 <p align="center">
 <img src="./dev_assets/CoinGecko.png" height="75">
 </p>
