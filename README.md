@@ -79,7 +79,7 @@ If there are any mistakes made, users have the ability to edit/delete their prev
 </p>
 
 <p align="center">
-CryptoFolio is **Powered by CoinGecko**
+CryptoFolio is Powered by CoinGecko
 </p>
 <p align="center">
 <img src="./dev_assets/CoinGecko.png" height="75">
